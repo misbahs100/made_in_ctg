@@ -5,4 +5,6 @@ export const categories = [
 	{ id: 4, name: "Phone" },
 	{ id: 5, name: "Jewelery" },
 	{ id: 6, name: "Furniture" },
+	{ id: 7, name: "Gamings" },
+	{ id: 8, name: "Sports" },
 ];

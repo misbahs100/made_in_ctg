@@ -114,7 +114,7 @@ const ProductList = ({ products }) => {
 			{bacToTop && (
 				<div className="fixed bottom-5 right-5">
 					<button
-						className="btn btn-primary sm:btn-lg rounded-full"
+						className="btn btn-blue-400 sm:btn-lg rounded-full"
 						onClick={scrollToTop}
 					>
 						&uarr; Back to Top

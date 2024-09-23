@@ -31,7 +31,7 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
 				</button>
 			</div>
 			<p className="font-semibold">
-				<span className="text-primary">Page {currentPage} </span> of
+				<span className="">Page {currentPage} </span> of
 				<span> {Math.ceil(totalProducts / productPerPage)} </span>
 			</p>
 		</div>

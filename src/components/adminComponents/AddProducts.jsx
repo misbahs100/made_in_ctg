@@ -34,22 +34,36 @@ const AddProducts = () => {
   //! File Upload to FireStorage
   function handleImageChange(e) {
     const file = e.target.files[0];
-    const storageRef = ref(storage, `images/${Date.now()}${file.name}`);
+  
+    if (!file) {
+      toast.error("No file selected.");
+      return;
+    }
+  
+    // Check file type (optional)
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file.");
+      return;
+    }
+  
+    const storageRef = ref(storage, `images/${Date.now()}_${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
+  
     uploadTask.on(
       "state_changed",
       (snapshot) => {
+        // Calculate upload progress
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setUploadProgress(progress);
+        setUploadProgress(progress); // Ensure setUploadProgress is a valid state function
       },
       (error) => {
-        toast.error(error.code, error.message);
+        toast.error(`Upload failed: ${error.message}`); // Use only error.message
       },
       () => {
-        // Handle successful uploads on complete
+        // Handle successful upload
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setProduct({ ...product, imageURL: downloadURL });
-          toast.success("File Uploaded Successfully");
+          setProduct((prevProduct) => ({ ...prevProduct, imageURL: downloadURL })); // Use the previous product state safely
+          toast.success("File uploaded successfully!");
         });
       }
     );
@@ -74,7 +88,7 @@ const AddProducts = () => {
       toast.success("Product added to Database Successfully");
       navigate("/admin/all-products");
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       toast.error("Something Went Wrong , Check Console");
       setIsLoading(false);
     }
@@ -118,7 +132,7 @@ const AddProducts = () => {
     Boolean(product.brand) &&
     Boolean(product.category) &&
     Boolean(product.description) &&
-    Boolean(product.imageURL) &&
+    // Boolean(product.imageURL) &&
     Boolean(product.name) &&
     Boolean(product.name);
 
