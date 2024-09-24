@@ -20,20 +20,16 @@ const Pagination = ({ productPerPage, currentPage, setCurrentPage, totalProducts
 		});
 	}
 	return (
-		<div className="w-full flex flex-col items-center justify-center">
-			<div className="btn-group">
-				<button className="btn" onClick={prevPage}>
+		<div className="w-full flex flex-col items-center justify-center mt-8">
+			<div className=" space-x-4 ">
+				<button className="px-6 py-3 bg-blue-400 rounded-l" onClick={prevPage}>
 					«
 				</button>
-				<button className="btn">Page {currentPage}</button>
-				<button className="btn" onClick={nextPage}>
+				<button className="px-6 py-3 bg-blue-400 rounded">Page {currentPage} of {Math.ceil(totalProducts / productPerPage)}</button>
+				<button className="px-6 py-3 bg-blue-400 rounded-r" onClick={nextPage}>
 					»
 				</button>
 			</div>
-			<p className="font-semibold">
-				<span className="">Page {currentPage} </span> of
-				<span> {Math.ceil(totalProducts / productPerPage)} </span>
-			</p>
 		</div>
 	);
 };

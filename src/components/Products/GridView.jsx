@@ -24,38 +24,57 @@ const GridView = ({ products }) => {
 			{products.map((product) => {
 				const { id, imageURL, name, price } = product;
 				return (
-					<div key={id} className="mx-auto ">
-						<div className="group">
-							<div className="card w-72 shadow-md relative hover:scale-105 duration-300 items-center">
-								<LazyLoadImage
-									src={imageURL}
-									alt={name}
-									className="h-60 object-contain rounded-md"
-									placeholderSrc="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
-									effect="blur"
-								/>
-								<div className=" absolute top-0 right-0">
-									<span className="badge badge-primary">Free Delivery</span>
-								</div>
-								<div className="my-4 items-center text-center">
-									<h1 className="font-semibold py-2">{name}</h1>
-									<p className="py-2 text-lg">{formatPrice(price)}</p>
-								</div>
-								<div className="absolute top-0 right-0 h-full w-full group-hover:bg-[rgba(0,0,0,0.5)] duration-300"></div>
-								<Link to={`/product-details/${id}`}>
-									<button className="absolute top-1/3 left-[45%] hidden group-hover:block transition-all ease-in duration-300">
-										<FcSearch size={32} />
-									</button>
-								</Link>
-								<button
-									className="absolute bottom-1/3 left-[30%] btn btn-sm btn-primary hidden group-hover:block transition-all ease-in duration-300"
-									onClick={() => add2CartFunction(product)}
-								>
-									Add to Cart
-								</button>
-							</div>
+					<div style={{width:'100% !important'}}  key={id} className="relative w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden group bg-white">
+						{/* Product Image */}
+						<LazyLoadImage
+							src={imageURL}
+							alt={name}
+							className="w-full h-60 md:h-72 object-cover rounded-t-md"
+							placeholderSrc="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
+							effect="blur"
+						/>
+
+						{/* Free Delivery Badge */}
+						<div className="absolute top-0 right-0 m-2">
+							<span className="bg-blue-400 text-white text-sm px-2 py-1 rounded-md shadow-lg">Free Delivery</span>
 						</div>
+
+						{/* Product Details */}
+						<div className="px-5 py-3">
+							<h3 className="text-gray-700 uppercase font-semibold">{name}</h3>
+							<span className="text-gray-600 mt-2 block font-medium">৳ {price}</span>
+						</div>
+
+						{/* Hover Overlay */}
+						<div className="absolute top-0 right-0 h-full w-full bg-[rgba(0,0,0,0.4)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+						{/* View Details Button (Search Icon) */}
+						<Link to={`/product-details/${id}`}>
+							<button className="absolute top-1/3 left-[45%] text-white hidden group-hover:block transition-all ease-in duration-300">
+								<FcSearch size={42} />
+							</button>
+						</Link>
+
+						{/* Add to Cart Button */}
+						<button
+							className="absolute bottom-1/3 left-[30%] bg-gold text-white btn btn-sm hidden group-hover:block transition-all ease-in duration-300"
+							onClick={() => add2CartFunction(product)}
+						>
+							Add to Cart
+						</button>
 					</div>
+
+
+
+					// <div key={id} className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+					// 	<div className="flex items-end justify-end h-56 w-full bg-cover" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80')" }}>
+
+					// 	</div>
+					// 	<div className="px-5 py-3">
+					// 		<h3 className="text-gray-700 uppercase">Chanel</h3>
+					// 		<span className="text-gray-500 mt-2">12000</span>
+					// 	</div>
+					// </div>
 				);
 			})}
 		</div>

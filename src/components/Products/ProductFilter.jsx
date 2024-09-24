@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByCategory, filterByBrand, filterByprice } from "../../redux/slice/filterSlice";
 import { formatPrice } from "../../utils/formatPrice";
 
+
 const ProductFilter = () => {
 	const { products } = useSelector((store) => store.product);
 	const { minPrice, maxPrice } = useSelector((store) => store.product);
@@ -43,7 +44,7 @@ const ProductFilter = () => {
 		<div className="flex flex-col gap-y-5">
 			{/* Categories */}
 			<div>
-				<h1 className="font-bold">CATEGORIES</h1>
+				<h1 className="font-bold text-green-700 mb-2">CATEGORIES</h1>
 				<div className="flex flex-col gap-y-2 items-start">
 					{allCategories.map((c, index) => {
 						return (
@@ -65,7 +66,7 @@ const ProductFilter = () => {
 			</div>
 			{/* Brand */}
 			<div>
-				<h1 className="font-bold">BRAND</h1>
+				<h1 className="font-bold text-green-700 mb-2">BRAND</h1>
 				<select
 					className="select select-bordered w-full"
 					name="brand"
@@ -82,10 +83,10 @@ const ProductFilter = () => {
 			</div>
 			{/* Price */}
 			<div>
-				<h1 className="font-bold">PRICE</h1>
+				<h1 className="font-bold text-green-700 mb-2">PRICE</h1>
 				<p>{formatPrice(price)}</p>
 				<input
-					className="range range-primary"
+					className="range bg-green-700 mt-2"
 					type="range"
 					value={price}
 					min={minPrice}
@@ -94,7 +95,7 @@ const ProductFilter = () => {
 				/>
 			</div>
 			<div>
-				<button className="btn btn-error" onClick={clearFilter}>
+				<button className="btn bg-stone-300 text-red-700" onClick={clearFilter}>
 					Clear Filters
 				</button>
 			</div>

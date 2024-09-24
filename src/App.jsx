@@ -16,6 +16,7 @@ import {
   ResetPassword,
   Review,
 } from "./pages";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   return (
@@ -62,6 +63,7 @@ const App = () => {
         {/* 404 routes */}
         <Route path="/*" element={<NotFound />} />
       </Routes>
+      <Footer />
       <Modal />
     </>
   );

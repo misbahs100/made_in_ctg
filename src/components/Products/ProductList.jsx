@@ -5,6 +5,8 @@ import { MdOutlineSubject } from "react-icons/md";
 // Redux
 import { filterBySearch, sortProducts } from "../../redux/slice/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { FaLongArrowAltUp } from "react-icons/fa";
+
 
 const ProductList = ({ products }) => {
 	const { filteredProducts } = useSelector((store) => store.filter);
@@ -112,12 +114,12 @@ const ProductList = ({ products }) => {
 				)}
 			</section>
 			{bacToTop && (
-				<div className="fixed bottom-5 right-5">
+				<div className="fixed bottom-20 md:bottom-8 right-10 md:right-5 ">
 					<button
-						className="btn btn-blue-400 sm:btn-lg rounded-full"
+						className="bg-green-400 btn-lg rounded-full font-bold"
 						onClick={scrollToTop}
 					>
-						&uarr; Back to Top
+						<FaLongArrowAltUp />
 					</button>
 				</div>
 			)}
